@@ -8,7 +8,7 @@ interface ModalProps {
     onSubmit: () => void;
     title?: string;
     body?: React.ReactElement;
-    footer: React.ReactElement;
+    footer?: React.ReactElement;
     actionLabel: string;
     disabled?: boolean;
 }
@@ -106,7 +106,7 @@ const Modal = ({isOpen, onClose, onSubmit, title, body
     </div>
     {/* Footer */}
     <div className="flex flex-col gap-2 p-10">
-        <Button disabled={disabled} label={actionLabel} secondary fullWidth large onClick={handleSubmit} /></div>
+        <Button disabled={disabled} label={actionLabel} secondary fullWidth large onClick={handleSubmit} />{footer}</div>
     </div>
     </div>
     </div>
