@@ -30,7 +30,7 @@ const Modal = ({isOpen, onClose, onSubmit, title, body
             return;
         }
 
-        onClose();
+        onSubmit(); // Call the onSubmit prop to trigger registration
         }, [disabled, onSubmit])
 
         if(!isOpen){
