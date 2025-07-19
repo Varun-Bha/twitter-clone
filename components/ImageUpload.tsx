@@ -20,8 +20,10 @@ const ImageUpload: React.FC<DropzoneProps> = ({ onChange, label, value, disabled
       const file = files[0]
       const reader = new FileReader();
       reader.onload = (event: ProgressEvent<FileReader>) => {
-        setBase64(event.target.result);
-        handleChange(event.target.result);
+        if (event.target) {
+          setBase64(event.target.result as string);
+          handleChange(event.target.result as string);
+        }
       };
       reader.readAsDataURL(file);
   }, [handleChange])
