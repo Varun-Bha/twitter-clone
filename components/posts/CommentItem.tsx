@@ -4,11 +4,24 @@ import { formatDistanceToNowStrict } from 'date-fns';
 
 import Avatar from '../Avatar';
 
-interface CommentItemProps {
-  data: Record<string, any>;
+interface User {
+  id: string;
+  name: string;
+  username: string;
 }
 
-const CommentItem: React.FC<CommentItemProps> = ({ data = {} }) => {
+interface Comment {
+  id: string;
+  body: string;
+  createdAt: string;
+  user: User;
+}
+
+interface CommentItemProps {
+  data: Comment;
+}
+
+const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
   const router = useRouter();
 
   const goToUser = useCallback((ev: React.MouseEvent<HTMLParagraphElement | HTMLSpanElement>) => {
