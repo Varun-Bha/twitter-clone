@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 
 import Avatar from '../Avatar';
