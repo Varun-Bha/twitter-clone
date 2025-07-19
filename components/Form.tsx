@@ -40,7 +40,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       setBody('');
       mutatePosts();
       mutatePost();
-    } catch (error) {
+    } catch {
       toast.error('Something went wrong');
     } finally {
       setIsLoading(false);

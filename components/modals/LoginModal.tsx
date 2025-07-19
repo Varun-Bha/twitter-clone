@@ -28,7 +28,7 @@ const LoginModal = () => {
       toast.success('Logged in');
 
       loginModal.onClose();
-    } catch (error) {
+    } catch {
       toast.error('Something went wrong');
     } finally {
       setIsLoading(false);

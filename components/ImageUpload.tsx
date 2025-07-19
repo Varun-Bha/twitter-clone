@@ -16,10 +16,10 @@ const ImageUpload: React.FC<DropzoneProps> = ({ onChange, label, value, disabled
     onChange(base64);
   }, [onChange]);
 
-  const handleDrop = useCallback((files: any) => {
+  const handleDrop = useCallback((files: File[]) => {
       const file = files[0]
       const reader = new FileReader();
-      reader.onload = (event: any) => {
+      reader.onload = (event: ProgressEvent<FileReader>) => {
         setBase64(event.target.result);
         handleChange(event.target.result);
       };

@@ -8,19 +8,36 @@ import useCurrentUser from '@/hooks/useCurrentUser';
 import useLike from '@/hooks/useLike';
 
 import Avatar from '../Avatar';
+
+interface User {
+  id: string;
+  name: string;
+  username: string;
+  hasNotification?: boolean;
+}
+
+interface Post {
+  id: string;
+  body: string;
+  createdAt: string;
+  user: User;
+  comments?: Array<{ id: string }>;
+  likedIds: string[];
+}
+
 interface PostItemProps {
-  data: Record<string, any>;
+  data: Post;
   userId?: string;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
+const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
   const router = useRouter();
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId});
 
-  const goToUser = useCallback((ev: any) => {
+  const goToUser = useCallback((ev: React.MouseEvent<HTMLParagraphElement | HTMLSpanElement>) => {
     ev.stopPropagation();
     router.push(`/users/${data.user.id}`)
   }, [router, data.user.id]);
@@ -29,7 +46,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
     router.push(`/posts/${data.id}`);
   }, [router, data.id]);
 
-  const onLike = useCallback(async (ev: any) => {
+  const onLike = useCallback(async (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.stopPropagation();
 
     if (!currentUser) {

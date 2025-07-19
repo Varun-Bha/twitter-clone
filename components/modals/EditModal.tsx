@@ -41,7 +41,7 @@ const EditModal = () => {
       toast.success('Updated');
 
       editModal.onClose();
-    } catch (error) {
+    } catch {
       toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
